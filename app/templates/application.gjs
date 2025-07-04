@@ -1,12 +1,9 @@
 import { pageTitle } from 'ember-page-title';
-import { WelcomePage } from 'ember-welcome-page';
 
 <template>
   {{pageTitle "EmberMultiframework"}}
-  
-  {{outlet}}
 
-  {{! The following component displays Ember's default welcome message. }}
-  <WelcomePage />
-  {{! Feel free to remove this! }}
+  <h1>Hello world!</h1>
+
+  {{outlet}}
 </template>
