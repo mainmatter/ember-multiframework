@@ -5,8 +5,10 @@ import { tracked } from '@glimmer/tracking';
 
 import EmberCounter from '../components/ember/counter.gjs';
 import ReactBridge from '../components/react-bridge.gjs';
+import SvelteBridge from '../components/svelte-bridge.gjs';
 
 import { ReactCounter } from "../components/react/counter.jsx";
+import SvelteCounter from "../components/svelte/counter.svelte";
 
 export default class ApplicationRouteComponent extends Component {
   @tracked counter = 0;
@@ -27,6 +29,14 @@ export default class ApplicationRouteComponent extends Component {
 
     <ReactBridge
       @reactComponent={{ReactCounter}}
+      @props={{hash
+        counter=this.counter
+        onCounterClick=this.increaseCounter
+      }}
+    />
+
+    <SvelteBridge
+      @component={{SvelteCounter}}
       @props={{hash
         counter=this.counter
         onCounterClick=this.increaseCounter
