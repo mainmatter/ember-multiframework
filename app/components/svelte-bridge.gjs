@@ -2,7 +2,7 @@ import { registerDestructor } from '@ember/destroyable';
 import Modifier from 'ember-modifier';
 
 import { mount, unmount } from 'svelte';
-import { reactive_props } from "./svelte-bridge-utils.svelte.js";
+import { reactive_props } from './svelte-bridge-utils.svelte.js';
 
 function cleanup(instance) {
   unmount(instance.root, { outro: false });
@@ -14,16 +14,12 @@ class SvelteModifier extends Modifier {
   root = null;
   props = null;
 
-  modify(
-    element,
-    positional,
-    { component, props },
-  ) {
+  modify(element, positional, { component, props }) {
     if (!this.root) {
       this.props = reactive_props(props);
       this.root = mount(component, {
         target: element,
-        props: this.props
+        props: this.props,
       });
 
       registerDestructor(this, cleanup);
@@ -36,13 +32,10 @@ class SvelteModifier extends Modifier {
 }
 
 <template>
-    <div
-      class='svelte-bridge-component'
-      data-test-svelte-bridge-component
-      {{SvelteModifier
-        component=@component
-        props=@props
-      }}
-      ...attributes
-    ></div>
+  <div
+    class="svelte-bridge-component"
+    data-test-svelte-bridge-component
+    {{SvelteModifier component=@component props=@props}}
+    ...attributes
+  ></div>
 </template>

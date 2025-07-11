@@ -1,6 +1,6 @@
 export function reactive_props(props) {
   let state = $state({
-    ...props
+    ...props,
   });
 
   return state;

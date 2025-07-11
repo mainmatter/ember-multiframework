@@ -1,5 +1,5 @@
 export default {
-  plugins: ['prettier-plugin-ember-template-tag'],
+  plugins: ['prettier-plugin-ember-template-tag', 'prettier-plugin-svelte'],
   singleQuote: true,
   overrides: [
     {
@@ -31,6 +31,12 @@ export default {
       options: {
         templateSingleQuote: false,
         trailingComma: 'es5',
+      },
+    },
+    {
+      files: '*.svelte',
+      options: {
+        parser: 'svelte',
       },
     },
   ],
