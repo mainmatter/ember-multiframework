@@ -16,6 +16,8 @@ import globals from 'globals';
 import js from '@eslint/js';
 
 import ember from 'eslint-plugin-ember/recommended';
+import svelte from 'eslint-plugin-svelte';
+import svelteConfig from './svelte.config.mjs';
 import eslintConfigPrettier from 'eslint-config-prettier';
 import qunit from 'eslint-plugin-qunit';
 import n from 'eslint-plugin-n';
@@ -29,6 +31,8 @@ const esmParserOptions = {
 
 export default [
   js.configs.recommended,
+  ...svelte.configs.recommended,
+  ...svelte.configs.prettier,
   eslintConfigPrettier,
   ember.configs.base,
   ember.configs.gjs,
@@ -111,5 +115,20 @@ export default [
         ...globals.node,
       },
     },
+  },
+  {
+    files: ['**/*.svelte', '**/*.svelte.js'],
+    languageOptions: {
+      parserOptions: {
+        // We recommend importing and specifying svelte.config.js.
+        // By doing so, some rules in eslint-plugin-svelte will automatically read the configuration and adjust their behavior accordingly.
+        // While certain Svelte settings may be statically loaded from svelte.config.js even if you don’t specify it,
+        // explicitly specifying it ensures better compatibility and functionality.
+        svelteConfig,
+      }
+    },
+    rules: {
+      'no-undef': 'off'
+    }
   },
 ];
