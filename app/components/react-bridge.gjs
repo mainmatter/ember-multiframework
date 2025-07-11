@@ -29,7 +29,7 @@ class ReactModifier extends Modifier {
   children = null;
   owner = getOwner(this);
 
-  modify(element, positional, { reactComponent, props, providerOptions }) {
+  modify(element, positional, { component, props, providerOptions }) {
     if (!this.root) {
       this.root = createRoot(element);
       registerDestructor(this, cleanup);
@@ -38,7 +38,7 @@ class ReactModifier extends Modifier {
     const wrappedComponent = createElement(
       App,
       { owner: this.owner, providerOptions },
-      createElement(reactComponent, props, this.children)
+      createElement(component, props, this.children)
     );
 
     if (macroCondition(isTesting())) {
@@ -58,7 +58,7 @@ class ReactModifier extends Modifier {
       class="react-bridge-component"
       data-test-react-bridge-component
       {{ReactModifier
-        reactComponent=@reactComponent
+        component=@component
         props=@props
         providerOptions=@providerOptions
       }}

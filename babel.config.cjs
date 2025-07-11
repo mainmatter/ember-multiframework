@@ -2,6 +2,7 @@ const {
   babelCompatSupport,
   templateCompatSupport,
 } = require('@embroider/compat/babel');
+const { stripPropertiesPlugin } = require('strip-test-selectors');
 
 module.exports = {
   plugins: [
@@ -14,7 +15,10 @@ module.exports = {
           'ember-cli-htmlbars-inline-precompile',
           'htmlbars-inline-precompile',
         ],
-        transforms: [...templateCompatSupport()],
+        transforms: [
+          ...templateCompatSupport(),
+          ...(process.env.STRIP_TEST_SELECTORS ? ['strip-test-selectors'] : []),
+        ],
       },
     ],
     [
@@ -34,6 +38,7 @@ module.exports = {
       },
     ],
     ...babelCompatSupport(),
+    ...(process.env.STRIP_TEST_SELECTORS ? [stripPropertiesPlugin()] : []),
   ],
 
   generatorOpts: {
