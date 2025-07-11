@@ -27,14 +27,9 @@ function cleanup(instance) {
 class ReactModifier extends Modifier {
   root = null;
   children = null;
-  isInitialRender = true;
   owner = getOwner(this);
 
-  modify(
-    element,
-    positional,
-    { reactComponent, props, providerOptions, hasBlock },
-  ) {
+  modify(element, positional, { reactComponent, props, providerOptions }) {
     if (!this.root) {
       this.root = createRoot(element);
       registerDestructor(this, cleanup);
@@ -43,7 +38,7 @@ class ReactModifier extends Modifier {
     const wrappedComponent = createElement(
       App,
       { owner: this.owner, providerOptions },
-      createElement(reactComponent, props, this.children),
+      createElement(reactComponent, props, this.children)
     );
 
     if (macroCondition(isTesting())) {
@@ -60,7 +55,7 @@ class ReactModifier extends Modifier {
 <template>
   {{#let (or @hasBlock (has-block)) as |normalizedHasBlock|}}
     <div
-      class='react-bridge-component'
+      class="react-bridge-component"
       data-test-react-bridge-component
       {{ReactModifier
         reactComponent=@reactComponent

@@ -1,4 +1,4 @@
-import { on } from "@ember/modifier";
+import { on } from '@ember/modifier';
 
 <template>
   <section>

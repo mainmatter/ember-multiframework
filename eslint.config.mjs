@@ -125,10 +125,10 @@ export default [
         // While certain Svelte settings may be statically loaded from svelte.config.js even if you don’t specify it,
         // explicitly specifying it ensures better compatibility and functionality.
         svelteConfig,
-      }
+      },
     },
     rules: {
-      'no-undef': 'off'
-    }
+      'no-undef': 'off',
+    },
   },
 ];
