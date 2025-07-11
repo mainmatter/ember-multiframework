@@ -28,7 +28,7 @@ export default class ApplicationRouteComponent extends Component {
     />
 
     <ReactBridge
-      @reactComponent={{ReactCounter}}
+      @component={{ReactCounter}}
       @props={{hash counter=this.counter onCounterClick=this.increaseCounter}}
     />
 

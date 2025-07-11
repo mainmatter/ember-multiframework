@@ -5,7 +5,11 @@
 <section>
   <h3>Svelte Counter</h3>
 
-  {counter}
+  <span data-test-counter>{counter}</span>
 
-  <button type="button" onclick={() => onCounterClick()}>+1</button>
+  <button
+    type="button"
+    onclick={() => onCounterClick()}
+    data-test-increment-button>+1</button
+  >
 </section>

@@ -1,5 +1,6 @@
 import { registerDestructor } from '@ember/destroyable';
 import Modifier from 'ember-modifier';
+import { assert } from '@ember/debug';
 
 import { mount, unmount } from 'svelte';
 import { reactive_props } from './svelte-bridge-utils.svelte.js';
@@ -15,6 +16,11 @@ class SvelteModifier extends Modifier {
   props = null;
 
   modify(element, positional, { component, props }) {
+    assert(
+      'You need to pass a component argument to the SvelteBridge component',
+      Boolean(component)
+    );
+
     if (!this.root) {
       this.props = reactive_props(props);
       this.root = mount(component, {
