@@ -14,8 +14,6 @@ export default defineConfig({
       extensions,
     }),
     react(),
-    svelte({
-      include: ['./**/*.svelte', './**/*.svelte.js'],
-    }),
+    svelte()
   ],
 });
